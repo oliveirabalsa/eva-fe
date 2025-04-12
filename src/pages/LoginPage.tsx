@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import logoEva from "@/assets/logo-eva.png";
-
+import { formatUsername } from "@/helpers/formatUsername";
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { data } = await login(username, password);
+      const { data } = await login(formatUsername(username), password);
       localStorage.setItem("token", data.access);
       navigate("/tasks");
     } catch {

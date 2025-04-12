@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { register } from "@/services/axios";
 import logoEva from "@/assets/logo-eva.png";
-
+import { formatUsername } from "@/helpers/formatUsername";
 const SignupPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const SignupPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await register(username, email, password);
+      await register(formatUsername(username), email, password);
       navigate("/");
     } catch {
       toast({
