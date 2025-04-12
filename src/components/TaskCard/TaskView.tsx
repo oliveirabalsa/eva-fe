@@ -20,7 +20,7 @@ const TaskView = ({ task, onEdit, onTaskUpdated }: TaskViewProps) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   return (
-    <Card className="border rounded-md shadow-sm hover:shadow-md transition-shadow">
+    <Card className="border rounded-md shadow-sm hover:shadow-md transition-shadow bg-white">
       <CardHeader className="py-3 px-4">
         <h3 className="text-base font-medium">{task.title}</h3>
       </CardHeader>
@@ -28,13 +28,18 @@ const TaskView = ({ task, onEdit, onTaskUpdated }: TaskViewProps) => {
         <p className="text-sm text-gray-600">{task.description}</p>
       </CardContent>
       <CardFooter className="flex justify-end py-2 px-4 gap-2">
-        <Button size="sm" variant="ghost" onClick={onEdit}>
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={onEdit}
+          className="hover:bg-gray-100"
+        >
           <FiEdit className="h-4 w-4" />
         </Button>
         <Button
           size="sm"
           variant="ghost"
-          className="text-red-500"
+          className="text-red-500 hover:bg-red-50"
           onClick={() => setIsDeleting(true)}
         >
           <FiTrash2 className="h-4 w-4" />

@@ -5,6 +5,7 @@ import { AxiosCustomError, updateTask } from "@/services/axios";
 import { useToast } from "@/hooks/use-toast";
 import { CONSTS } from "@/config/consts";
 import { useNavigate } from "react-router-dom";
+import { FiClock, FiCheckCircle, FiList } from "react-icons/fi";
 
 interface KanbanBoardProps {
   tasks: Task[];
@@ -12,10 +13,29 @@ interface KanbanBoardProps {
 }
 
 const statuses: Status[] = ["TODO", "IN_PROGRESS", "DONE"];
-const statusLabels: Record<Status, string> = {
-  TODO: "A fazer",
-  IN_PROGRESS: "Em progresso",
-  DONE: "Feito",
+
+const statusConfig: Record<
+  Status,
+  { label: string; icon: React.ReactNode; bgColor: string; borderColor: string }
+> = {
+  TODO: {
+    label: "A fazer",
+    icon: <FiList className="h-5 w-5 text-blue-600" />,
+    bgColor: "bg-blue-50",
+    borderColor: "border-blue-200",
+  },
+  IN_PROGRESS: {
+    label: "Em progresso",
+    icon: <FiClock className="h-5 w-5 text-amber-600" />,
+    bgColor: "bg-amber-50",
+    borderColor: "border-amber-200",
+  },
+  DONE: {
+    label: "Feito",
+    icon: <FiCheckCircle className="h-5 w-5 text-green-600" />,
+    bgColor: "bg-green-50",
+    borderColor: "border-green-200",
+  },
 };
 
 const KanbanBoard = ({ tasks, onTaskUpdated }: KanbanBoardProps) => {
@@ -73,35 +93,42 @@ const KanbanBoard = ({ tasks, onTaskUpdated }: KanbanBoardProps) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {statuses.map((status) => (
-        <div
-          key={status}
-          className="bg-gray-100 p-4 rounded-lg"
-          onDragOver={handleDragOver}
-          onDrop={(e) => handleDrop(e, status)}
-        >
-          <h3 className="font-medium text-lg mb-4 pb-2 border-b">
-            {statusLabels[status]} ({getTasksByStatus(status).length})
-          </h3>
-          <div className="space-y-3">
-            {getTasksByStatus(status).map((task) => (
-              <div
-                key={task.id}
-                draggable
-                onDragStart={(e) => handleDragStart(e, task)}
-                className="cursor-move"
-              >
-                <TaskCard task={task} onTaskUpdated={onTaskUpdated} />
-              </div>
-            ))}
-            {getTasksByStatus(status).length === 0 && (
-              <div className="text-center text-gray-500 py-4">
-                Nenhuma tarefa
-              </div>
-            )}
+      {statuses.map((status) => {
+        const { label, icon, bgColor, borderColor } = statusConfig[status];
+        return (
+          <div
+            key={status}
+            className={`${bgColor} p-4 rounded-lg border ${borderColor} shadow-sm`}
+            onDragOver={handleDragOver}
+            onDrop={(e) => handleDrop(e, status)}
+          >
+            <h3 className="font-medium text-lg mb-4 pb-2 border-b flex items-center gap-2">
+              {icon}
+              <span>{label}</span>
+              <span className="ml-auto bg-white text-gray-700 text-sm py-0.5 px-2 rounded-full">
+                {getTasksByStatus(status).length}
+              </span>
+            </h3>
+            <div className="space-y-3">
+              {getTasksByStatus(status).map((task) => (
+                <div
+                  key={task.id}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, task)}
+                  className="cursor-move"
+                >
+                  <TaskCard task={task} onTaskUpdated={onTaskUpdated} />
+                </div>
+              ))}
+              {getTasksByStatus(status).length === 0 && (
+                <div className="text-center text-gray-500 py-6 bg-white bg-opacity-50 rounded border border-dashed">
+                  Nenhuma tarefa
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
