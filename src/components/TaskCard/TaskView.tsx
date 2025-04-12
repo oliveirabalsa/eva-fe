@@ -25,7 +25,11 @@ const TaskView = ({ task, onEdit, onTaskUpdated }: TaskViewProps) => {
         <h3 className="text-base font-medium">{task.title}</h3>
       </CardHeader>
       <CardContent className="py-2 px-4">
-        <p className="text-sm text-gray-600">{task.description}</p>
+        {task.description ? (
+          <p className="text-sm text-gray-600">{task.description}</p>
+        ) : (
+          <p className="text-sm text-gray-400 italic">Sem descrição</p>
+        )}
       </CardContent>
       <CardFooter className="flex justify-end py-2 px-4 gap-2">
         <Button

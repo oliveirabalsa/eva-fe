@@ -45,10 +45,6 @@ const TaskDialog = ({ onTaskCreated }: TaskDialogProps) => {
 
     try {
       await createTask({ title, description, status, responsible: 1 }, token);
-      toast({
-        title: "Tarefa Criada",
-        description: "Sua nova tarefa foi criada com sucesso!",
-      });
       setTitle("");
       setDescription("");
       setStatus("TODO");
@@ -89,7 +85,6 @@ const TaskDialog = ({ onTaskCreated }: TaskDialogProps) => {
             placeholder="Descrição"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
           />
           <Select
             value={status}

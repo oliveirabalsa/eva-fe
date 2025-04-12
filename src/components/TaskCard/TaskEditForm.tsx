@@ -39,12 +39,8 @@ const TaskEditForm = ({ task, onTaskUpdated, onCancel }: TaskEditFormProps) => {
       await updateTask(
         task.id!,
         { title, description, status, responsible: task.responsible },
-        token,
+        token
       );
-      toast({
-        title: "Tarefa Atualizada",
-        description: "A tarefa foi atualizada com sucesso!",
-      });
       onTaskUpdated();
       onCancel();
     } catch (error) {

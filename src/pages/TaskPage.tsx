@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { CONSTS } from "@/config/consts";
 import { Button } from "@/components/ui/button";
 import { FiLogOut } from "react-icons/fi";
-import KanbanBoard from "@/components/KanbanBoard";
+import { KanbanBoard } from "@/components/KanbanBoard";
 
 const TaskPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -74,7 +74,7 @@ const TaskPage = () => {
     <div className="p-6 bg-gray-50 min-h-screen relative">
       <div className="max-w-screen-xl mx-auto">
         <header className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">Tarefas</h1>
+          <h1 className="text-3xl font-bold">EVA - Gestão de Tarefas</h1>
           <Button
             variant="ghost"
             className="flex items-center gap-2"

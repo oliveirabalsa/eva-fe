@@ -17,12 +17,6 @@ const SignupPage = () => {
     e.preventDefault();
     try {
       await register(username, email, password);
-      toast({
-        title: "Cadastro Realizado",
-        description:
-          "Sua conta foi criada com sucesso. Faça login para continuar.",
-        variant: "default",
-      });
       navigate("/");
     } catch (error) {
       console.log(error);

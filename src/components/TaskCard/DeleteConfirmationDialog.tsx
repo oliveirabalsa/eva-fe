@@ -35,10 +35,6 @@ const DeleteConfirmationDialog = ({
 
     try {
       await deleteTask(taskId, token);
-      toast({
-        title: "Tarefa Excluída",
-        description: "A tarefa foi excluída com sucesso!",
-      });
       onTaskDeleted();
       onCancel();
     } catch (error) {
