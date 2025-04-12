@@ -5,6 +5,7 @@ import { login } from "@/services/axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import logoEva from "@/assets/logo-eva.png";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -18,8 +19,7 @@ const LoginPage = () => {
       const { data } = await login(username, password);
       localStorage.setItem("token", data.access);
       navigate("/tasks");
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast({
         title: "Erro no Login",
         description: "Credenciais inválidas. Tente novamente.",
@@ -29,10 +29,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center flex-col justify-center h-screen bg-gray-100">
-      <Card className="w-4/5 mx-auto max-w-lg">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl font-bold">
+    <div className="flex items-center flex-col justify-center h-screen bg-primary/10">
+      <div className="flex flex-col items-center mb-6">
+        <img src={logoEva} alt="EVA Logo" className="h-20 mb-2" />
+        <h1 className="text-2xl font-bold text-primary">
+          Estratégia Visual Ágil
+        </h1>
+      </div>
+      <Card className="w-4/5 mx-auto max-w-lg border-primary/20 shadow-lg">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-center text-2xl font-bold text-primary">
             Login
           </CardTitle>
         </CardHeader>
@@ -46,25 +52,27 @@ const LoginPage = () => {
               placeholder="Usuário"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className="border-primary/30 focus-visible:ring-primary"
             />
             <Input
               type="password"
               placeholder="Senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="border-primary/30 focus-visible:ring-primary"
             />
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90"
+            >
               Entrar
             </Button>
           </form>
         </CardContent>
       </Card>
-      <div className="mt-4 text-gray-500">
+      <div className="mt-4 text-primary/80">
         <span>Não possui uma conta? </span>
-        <a
-          href="/signup"
-          className="text-blue-500 hover:underline font-semibold"
-        >
+        <a href="/signup" className="text-accent hover:underline font-semibold">
           Cadastre-se
         </a>
       </div>

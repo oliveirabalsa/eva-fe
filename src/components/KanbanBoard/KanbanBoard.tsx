@@ -20,15 +20,15 @@ const statusConfig: Record<
 > = {
   TODO: {
     label: "A fazer",
-    icon: <FiList className="h-5 w-5 text-blue-600" />,
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200",
+    icon: <FiList className="h-5 w-5 text-primary" />,
+    bgColor: "bg-primary/5",
+    borderColor: "border-primary/20",
   },
   IN_PROGRESS: {
     label: "Em progresso",
-    icon: <FiClock className="h-5 w-5 text-amber-600" />,
-    bgColor: "bg-amber-50",
-    borderColor: "border-amber-200",
+    icon: <FiClock className="h-5 w-5 text-accent" />,
+    bgColor: "bg-accent/10",
+    borderColor: "border-accent/30",
   },
   DONE: {
     label: "Feito",
@@ -102,10 +102,10 @@ const KanbanBoard = ({ tasks, onTaskUpdated }: KanbanBoardProps) => {
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, status)}
           >
-            <h3 className="font-medium text-lg mb-4 pb-2 border-b flex items-center gap-2">
+            <h3 className="font-medium text-lg mb-4 pb-2 border-b border-b-primary/10 flex items-center gap-2">
               {icon}
-              <span>{label}</span>
-              <span className="ml-auto bg-white text-gray-700 text-sm py-0.5 px-2 rounded-full">
+              <span className="text-primary/90">{label}</span>
+              <span className="ml-auto bg-white text-primary/70 text-sm py-0.5 px-2 rounded-full shadow-sm">
                 {getTasksByStatus(status).length}
               </span>
             </h3>
@@ -121,7 +121,7 @@ const KanbanBoard = ({ tasks, onTaskUpdated }: KanbanBoardProps) => {
                 </div>
               ))}
               {getTasksByStatus(status).length === 0 && (
-                <div className="text-center text-gray-500 py-6 bg-white bg-opacity-50 rounded border border-dashed">
+                <div className="text-center text-primary/60 py-6 bg-white/70 rounded border border-dashed border-primary/20">
                   Nenhuma tarefa
                 </div>
               )}

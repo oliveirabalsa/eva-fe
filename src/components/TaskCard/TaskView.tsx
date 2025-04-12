@@ -20,30 +20,30 @@ const TaskView = ({ task, onEdit, onTaskUpdated }: TaskViewProps) => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   return (
-    <Card className="border rounded-md shadow-sm hover:shadow-md transition-shadow bg-white">
-      <CardHeader className="py-3 px-4">
-        <h3 className="text-base font-medium">{task.title}</h3>
+    <Card className="border border-primary/20 rounded-md shadow-sm hover:shadow-md transition-shadow bg-white">
+      <CardHeader className="py-3 px-4 border-b border-primary/10">
+        <h3 className="text-base font-medium text-primary/90">{task.title}</h3>
       </CardHeader>
       <CardContent className="py-2 px-4">
         {task.description ? (
-          <p className="text-sm text-gray-600">{task.description}</p>
+          <p className="text-sm text-primary/70">{task.description}</p>
         ) : (
-          <p className="text-sm text-gray-400 italic">Sem descrição</p>
+          <p className="text-sm text-primary/40 italic">Sem descrição</p>
         )}
       </CardContent>
-      <CardFooter className="flex justify-end py-2 px-4 gap-2">
+      <CardFooter className="flex justify-end py-2 px-4 gap-2 border-t border-primary/10">
         <Button
           size="sm"
           variant="ghost"
           onClick={onEdit}
-          className="hover:bg-gray-100"
+          className="hover:bg-primary/5 text-primary/80"
         >
           <FiEdit className="h-4 w-4" />
         </Button>
         <Button
           size="sm"
           variant="ghost"
-          className="text-red-500 hover:bg-red-50"
+          className="text-destructive hover:bg-destructive/10"
           onClick={() => setIsDeleting(true)}
         >
           <FiTrash2 className="h-4 w-4" />

@@ -9,6 +9,7 @@ import { CONSTS } from "@/config/consts";
 import { Button } from "@/components/ui/button";
 import { FiLogOut } from "react-icons/fi";
 import { KanbanBoard } from "@/components/KanbanBoard";
+import logoEva from "@/assets/logo-eva.png";
 
 const TaskPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -35,15 +36,15 @@ const TaskPage = () => {
       const { data } = await fetchTasks(token, appliedFilters);
       setTasks(data);
     } catch (error) {
-      console.error(error);
       if (
         (error as AxiosCustomError).response?.data?.code === "token_not_valid"
       ) {
         toast(CONSTS.toast.sessionExpired);
         navigate("/");
-      } else {
-        toast(CONSTS.toast.noTasksLoaded);
+        return;
       }
+
+      toast(CONSTS.toast.noTasksLoaded);
     } finally {
       setLoading(false);
     }
@@ -71,13 +72,18 @@ const TaskPage = () => {
   }, [loadTasks]);
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen relative">
+    <div className="p-6 bg-primary/5 min-h-screen relative">
       <div className="max-w-screen-xl mx-auto">
-        <header className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">EVA - Gestão de Tarefas</h1>
+        <header className="flex justify-between items-center mb-6 pb-4 border-b border-primary/20">
+          <div className="flex items-center gap-3">
+            <img src={logoEva} alt="EVA Logo" className="h-10" />
+            <h1 className="text-2xl font-bold text-primary">
+              Gestão de Tarefas
+            </h1>
+          </div>
           <Button
-            variant="ghost"
-            className="flex items-center gap-2"
+            variant="outline"
+            className="flex items-center gap-2 border-primary/30 text-primary hover:bg-primary/10"
             onClick={handleLogout}
           >
             <FiLogOut className="text-xl" />
@@ -85,7 +91,9 @@ const TaskPage = () => {
           </Button>
         </header>
         {loading ? (
-          <p>Carregando...</p>
+          <div className="flex justify-center p-8">
+            <p className="text-primary/70">Carregando...</p>
+          </div>
         ) : (
           <div className="space-y-6">
             <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-0 items-end justify-between">
