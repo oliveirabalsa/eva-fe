@@ -1,33 +1,87 @@
-# Eva - Front-end da aplicação Eva
+# EVA - Frontend da Plataforma de Gestão de Tarefas
 
-## Descrição
-Este repositório contém o código fonte do front-end da aplicação Eva, uma plataforma de gestão de tarefas que permite aos usuários criar, editar e acompanhar suas tarefas.
+## 📋 Visão Geral
 
-## Tecnologias utilizadas
-* React
-* TypeScript
-* Material UI
-* Axios
+Este repositório contém o código-fonte do frontend da aplicação EVA, uma plataforma moderna de gestão de tarefas que permite aos usuários organizar suas atividades em um quadro Kanban com funcionalidades de arrastar e soltar.
 
-## Estrutura do projeto
-* src: Contém os componentes, estilos e lógica da aplicação.
-* public: Contém arquivos estáticos como o index.html.
+## 🚀 Funcionalidades
 
-## Instalação e execução
-1. **Clone o repositório:**
+- **Interface Kanban**: Organize tarefas em três colunas (A fazer, Em progresso, Feito)
+- **Arrastar e Soltar**: Mova tarefas entre colunas para atualizar seu status
+- **Gerenciamento de Tarefas**:
+  - Criação de novas tarefas
+  - Edição de tarefas existentes
+  - Exclusão de tarefas
+- **Autenticação de Usuários**: Login e registro seguro
+- **Design Responsivo**: Interface adaptável para diferentes dispositivos
+- **Filtros e Busca**: Encontre tarefas rapidamente
+
+## 🛠️ Tecnologias Utilizadas
+
+- **React 18**: Biblioteca JavaScript para construção da interface
+- **TypeScript**: Tipagem estática para código mais robusto
+- **Vite**: Build tool rápida e moderna
+- **Tailwind CSS**: Framework CSS para design eficiente
+- **Radix UI**: Componentes acessíveis de interface
+- **React Router**: Navegação entre páginas
+- **Axios**: Cliente HTTP para comunicação com a API
+- **React Icons**: Biblioteca de ícones
+
+## 📦 Estrutura do Projeto
+
+- `src/components`: Componentes reutilizáveis da UI
+  - `KanbanBoard`: Implementação do quadro Kanban
+  - `TaskCard`: Cards de tarefas
+  - `TaskDialog`: Modal para criação e edição de tarefas
+  - `TaskFilters`: Filtros de tarefas
+  - `ui`: Componentes base como botões, inputs, etc.
+- `src/pages`: Páginas principais da aplicação
+  - `LoginPage`: Página de login
+  - `SignupPage`: Página de cadastro
+  - `TaskPage`: Página principal com o quadro Kanban
+- `src/services`: Camada de serviços
+  - `axios.ts`: Configuração e endpoints da API
+  - `helpers`: Funções auxiliares
+
+## 🚀 Como Executar o Projeto
+
+1. **Clone o repositório**:
+
    ```bash
-   git clone https://github.com/almir-ticarreiras/eva-front-end.git
-2. **Instale as dependências:**
+   git clone https://github.com/oliveirabalsa/eva-fe.git
+   cd eva-fe
+   ```
+
+2. **Instale as dependências**:
+
    ```bash
    npm install
-3. **Execute a aplicação:**
+   ```
+
+3. **Configure as variáveis de ambiente**:
+   Crie um arquivo `.env` na raiz do projeto com:
+
+   ```
+   VITE_API_URL=http://127.0.0.1:8000
+   ```
+
+4. **Execute a aplicação**:
+
    ```bash
    npm run dev
+   ```
 
-## Contribuindo
-Contribuições são bem-vindas! Para contribuir, siga estes passos:
+5. **Acesse a aplicação**:
+   Abra o navegador em http://localhost:5173
 
-* Fork este repositório.
-* Crie um novo branch.
-* Faça suas alterações e commit.
-* Envie um pull request.
+## 🔧 Integração com o Backend
+
+O frontend comunica-se com o backend Django REST API através dos seguintes endpoints:
+
+- `/auth/token/`: Autenticação e obtenção de token JWT
+- `/users/`: Gerenciamento de usuários
+- `/tasks/`: CRUD de tarefas
+
+## 📝 Licença
+
+Este projeto está licenciado sob a licença MIT.
