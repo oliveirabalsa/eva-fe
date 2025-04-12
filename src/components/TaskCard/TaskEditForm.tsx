@@ -36,11 +36,7 @@ const TaskEditForm = ({ task, onTaskUpdated, onCancel }: TaskEditFormProps) => {
     }
 
     try {
-      await updateTask(
-        task.id!,
-        { title, description, status, responsible: task.responsible },
-        token
-      );
+      await updateTask(task.id!, { title, description, status }, token);
       onTaskUpdated();
       onCancel();
     } catch (error) {

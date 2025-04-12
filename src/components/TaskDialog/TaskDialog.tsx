@@ -44,7 +44,7 @@ const TaskDialog = ({ onTaskCreated }: TaskDialogProps) => {
     }
 
     try {
-      await createTask({ title, description, status, responsible: 1 }, token);
+      await createTask({ title, description, status }, token);
       setTitle("");
       setDescription("");
       setStatus("TODO");
