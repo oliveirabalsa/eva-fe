@@ -2,7 +2,7 @@ import { Task } from "@/components/TaskCard/types";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://52.204.158.5",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export type AxiosCustomError = {
@@ -16,7 +16,7 @@ export type AxiosCustomError = {
 export const register = async (
   username: string,
   email: string,
-  password: string,
+  password: string
 ) => api.post("/users/", { username, email, password });
 
 export const login = async (username: string, password: string) =>
@@ -39,10 +39,10 @@ export const deleteTask = async (id: number, token: string) =>
 
 export const fetchTasks = async (
   token: string,
-  filters: { [key: string]: string } = {},
+  filters: { [key: string]: string } = {}
 ) => {
   const noEmptyFilters = Object.fromEntries(
-    Object.entries(filters).filter(([, value]) => value),
+    Object.entries(filters).filter(([, value]) => value)
   );
   const queryString = new URLSearchParams(noEmptyFilters).toString();
   return api.get(`/tasks/?${queryString}`, {

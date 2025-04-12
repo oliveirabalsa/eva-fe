@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import TaskCard from "@/components/TaskCard/TaskCard";
 import TaskDialog from "@/components/TaskDialog/TaskDialog";
 import TaskFilters from "@/components/TaskFilters/TaskFilters";
 import { AxiosCustomError, fetchTasks } from "@/services/axios";
@@ -9,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { CONSTS } from "@/config/consts";
 import { Button } from "@/components/ui/button";
 import { FiLogOut } from "react-icons/fi";
+import KanbanBoard from "@/components/KanbanBoard";
 
 const TaskPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -72,7 +72,7 @@ const TaskPage = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen relative">
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-xl mx-auto">
         <header className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tarefas</h1>
           <Button
@@ -87,7 +87,7 @@ const TaskPage = () => {
         {loading ? (
           <p>Carregando...</p>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-0 items-end justify-between">
               <div className="w-full sm:w-[90%]">
                 <TaskFilters
@@ -98,9 +98,7 @@ const TaskPage = () => {
               </div>
               <TaskDialog onTaskCreated={loadTasks} />
             </div>
-            {tasks.map((task) => (
-              <TaskCard key={task.id} task={task} onTaskUpdated={loadTasks} />
-            ))}
+            <KanbanBoard tasks={tasks} onTaskUpdated={loadTasks} />
           </div>
         )}
       </div>

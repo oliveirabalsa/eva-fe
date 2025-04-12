@@ -67,8 +67,9 @@ const TaskDialog = ({ onTaskCreated }: TaskDialogProps) => {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="rounded-full mr-auto sm:ml-auto">
-          <FiPlus children className="text-white" />
+        <Button className="flex items-center gap-2 sm:ml-auto">
+          <FiPlus className="h-4 w-4" />
+          <span className="hidden sm:inline">Nova Tarefa</span>
         </Button>
       </DialogTrigger>
       <DialogContent>
